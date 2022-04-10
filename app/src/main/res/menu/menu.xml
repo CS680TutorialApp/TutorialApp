@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/dashboard"
+        android:title="Dashboard"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/subject"
+        android:title="Subject"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/schedule"
+        android:title="Schedule"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/tutor"
+        android:title="Tutor"
+        app:showAsAction="always" />
+
+
+    <item
+        android:id="@+id/close"
+        android:title="Sign Out"
+        app:showAsAction="never" />
+</menu>
