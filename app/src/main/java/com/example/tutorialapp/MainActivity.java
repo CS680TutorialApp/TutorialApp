@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
         startActivity(intent);
+        Toast.makeText(this, "Returned from login activity", Toast.LENGTH_SHORT).show();
 
     }
 }
