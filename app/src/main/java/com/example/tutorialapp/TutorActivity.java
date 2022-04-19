@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class TutorActivity extends AppCompatActivity implements View.OnClickListener{
+public class TutorActivity extends AppCompatActivity implements View.OnClickListener {
 
     private String tutorName;
     private String zoom;
@@ -46,7 +46,7 @@ public class TutorActivity extends AppCompatActivity implements View.OnClickList
         //create database
         try {
             db = tutorHelper.getWritableDatabase();
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             Log.d("SQLiteDemo", "Create database failed");
         }
 
@@ -77,18 +77,13 @@ public class TutorActivity extends AppCompatActivity implements View.OnClickList
         button5.setOnClickListener(this);
 
 
-
-
-
-
-
     }
 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button2:
                 //TODO CHECK ON THIS WEB SEARCH
-                Uri uri  = Uri.parse(zoom);
+                Uri uri = Uri.parse(zoom);
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
                 break;
@@ -96,7 +91,7 @@ public class TutorActivity extends AppCompatActivity implements View.OnClickList
             // start web search intent
             case R.id.button3:
                 //TODO CHECK ON MAP
-                Uri uri2  = Uri.parse("geo:0,0?q=175+forest+street+waltham+ma");
+                Uri uri2 = Uri.parse("geo:0,0?q=175+forest+street+waltham+ma");
                 Intent intent3 = new Intent(Intent.ACTION_VIEW, uri2);
                 startActivity(intent3);
                 break;
@@ -106,10 +101,11 @@ public class TutorActivity extends AppCompatActivity implements View.OnClickList
                 break;
             // google map intent =
             case R.id.button5:
-                Uri uri3  = Uri.parse("tel:" + phone);
+                Uri uri3 = Uri.parse("tel:" + phone);
                 Intent intent2 = new Intent(Intent.ACTION_CALL, uri3);
                 startActivity(intent2);
                 break;
 
         }
+    }
 }

@@ -26,7 +26,7 @@ public class CustomAdapter extends ArrayAdapter {
         convertView = LayoutInflater.from(context).inflate(R.layout.list_row, parent, false);
         TextView title = (TextView) convertView.findViewById(R.id.title);
         // display row by using position plus one
-        title.setText((data);
+        title.setText((data));
         return  convertView;
 
     }

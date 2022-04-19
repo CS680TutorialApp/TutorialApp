@@ -65,7 +65,7 @@ public class TutorSQLHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         values = new ContentValues();
         values.put(KEY_NAME, item.getName());
-        values.put(KEY_ZOOM, item.getZoomLink();
+        values.put(KEY_ZOOM, item.getZoomLink());
         values.put(KEY_ADDRESS, item.getAddress());
         values.put(KEY_PHONE, item.getPhone());
         values.put(KEY_EMAIL, item.getEmail());
@@ -104,13 +104,14 @@ public class TutorSQLHelper extends SQLiteOpenHelper {
         //write contents of Cursor to list
         tutorList = new ArrayList<Tutor>();
         while (cursor.moveToNext()) {
-            @SuppressLint("Range") String name = cursor.getString(cursor.getColumnIndex(KEY_NAME));
+            @SuppressLint("Range")
+            String name2 = cursor.getString(cursor.getColumnIndex(KEY_NAME));
             String zoom = cursor.getString(cursor.getColumnIndex(KEY_ZOOM));
             String add = cursor.getString(cursor.getColumnIndex(KEY_ADDRESS));
             String phone = cursor.getString(cursor.getColumnIndex(KEY_PHONE));
             String email = cursor.getString(cursor.getColumnIndex(KEY_EMAIL));
 
-            tutorList.add(new Tutor(name, zoom, add, phone, email));
+            tutorList.add(new Tutor(name2, zoom, add, phone, email));
         };
         db.close();
         return tutorList.get(0);

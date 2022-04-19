@@ -50,7 +50,7 @@ public class SubjectListActivity extends AppCompatActivity {
         //create database
         try {
             db = subjectHelper.getWritableDatabase();
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             Log.d("SQLiteDemo", "Create database failed");
         }
 
@@ -89,9 +89,10 @@ public class SubjectListActivity extends AppCompatActivity {
                 listView.setAdapter(customAdapter);
 
 
-
         }
+            return true;
     }
+
 
     public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
         String subject = subjectList.get(position).getName();
