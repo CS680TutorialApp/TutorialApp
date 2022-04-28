@@ -47,7 +47,7 @@ public class SubjectDetailActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent myIntent = new Intent(getApplicationContext(), TutorActivity.class);
+                Intent myIntent = new Intent(getApplicationContext(), CalendarActivity.class);
 
                 Bundle myData = new Bundle();
                 myData.putString("tutorName", tutor);

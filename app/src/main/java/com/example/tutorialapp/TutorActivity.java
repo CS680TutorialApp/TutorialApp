@@ -29,6 +29,8 @@ public class TutorActivity extends AppCompatActivity implements View.OnClickList
     private Button button4;
     private Button button5;
 
+    private TextView textView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +77,9 @@ public class TutorActivity extends AppCompatActivity implements View.OnClickList
 
         button5 = (Button) findViewById(R.id.button5);
         button5.setOnClickListener(this);
+
+        textView = (TextView) findViewById(R.id.textView5);
+        textView.setText("Confirmation of Appointment with " + tutor.getName());
 
 
     }

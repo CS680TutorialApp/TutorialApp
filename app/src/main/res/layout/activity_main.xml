@@ -43,12 +43,12 @@
                 android:background="@drawable/edit"
                 android:drawableLeft="@drawable/ic_person"
                 android:drawablePadding="5dp"
+                android:hint="username"
                 android:inputType="textEmailAddress"
                 android:padding="15dp"
-                android:hint="username"
-                android:textColorHint="#2CA7E0"
                 android:textAlignment="center"
-                android:textColor="#2CA7E0">
+                android:textColor="#2CA7E0"
+                android:textColorHint="#2CA7E0">
 
             </EditText>
 
@@ -62,12 +62,12 @@
                 android:background="@drawable/edit"
                 android:drawableLeft="@drawable/ic_pass"
                 android:drawablePadding="10dp"
+                android:hint="password"
                 android:inputType="textPassword"
                 android:padding="15dp"
-                android:hint="password"
-                android:textColorHint="#2CA7E0"
                 android:textAlignment="center"
-                android:textColor="#2CA7E0">
+                android:textColor="#2CA7E0"
+                android:textColorHint="#2CA7E0">
 
             </EditText>
 
