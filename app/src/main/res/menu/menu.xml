@@ -3,26 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/dashboard"
-        android:title="Dashboard"
-        app:showAsAction="always" />
-    <item
         android:id="@+id/subject"
-        android:title="Subject"
-        app:showAsAction="always" />
-    <item
-        android:id="@+id/schedule"
-        android:title="Schedule"
+        android:title="Subjects"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/tutor"
-        android:title="Tutor"
+        android:title="Tutors"
         app:showAsAction="always" />
 
 
     <item
         android:id="@+id/close"
         android:title="Sign Out"
-        app:showAsAction="never" />
+        app:showAsAction="always" />
 </menu>

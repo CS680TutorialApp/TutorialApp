@@ -18,15 +18,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
-public class SubjectListActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class TutorListActivity extends AppCompatActivity {
 
     private SQLiteDatabase db;
-    private SubjectSQLHelper subjectHelper;
+    private TutorSQLHelper tutorHelper;
 
     private ListView listView;
     private TextView textView;
 
-    private ArrayList<Subject> subjectList;
+    private ArrayList<Tutor> tutorList;
     private final int IPC_ID = 1122;
 
 
@@ -39,9 +39,9 @@ public class SubjectListActivity extends AppCompatActivity implements AdapterVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subject);
 
-        //attach listener
-        listView = (ListView) findViewById(R.id.list);
-        listView.setOnItemClickListener(this);
+//        //attach listener
+//        listView = (ListView) findViewById(R.id.list2);
+ //       listView.setOnItemClickListener(this);
 
 
         //Show title on action bar
@@ -68,14 +68,17 @@ public class SubjectListActivity extends AppCompatActivity implements AdapterVie
 //        subjectHelper.addSubject(new Subject("SQL", "Bob", "https://www.w3schools.com/sql/"));
 
 
-        subjectList = subjectHelper.getSubjectList();
+        tutorList = tutorHelper.getTutorList();
 
-        CustomAdapter customAdapter = new CustomAdapter(this, subjectList);
-        listView.setAdapter(customAdapter);
+//        CustomAdapter customAdapter = new CustomAdapter(this, tutorList);
+//        listView.setAdapter(customAdapter);
 
 
         textView = (TextView) findViewById(R.id.textView);
-        textView.setText("Subject List");
+        textView.setText("Tutor List");
+        for (Tutor tutor: tutorList) {
+            textView.append(tutor.getName() + "\n");
+        }
     }
 
     @Override
@@ -95,8 +98,8 @@ public class SubjectListActivity extends AppCompatActivity implements AdapterVie
 
             case R.id.tutor:
                 //TODO ADD TUTOR LIST
-                Intent intent2 = new Intent(this, TutorListActivity.class);
-                startActivity(intent2);
+                 Intent intent2 = new Intent(this, TutorListActivity.class);
+                 startActivity(intent2);
                 return true;
 
             case R.id.close:
@@ -112,31 +115,6 @@ public class SubjectListActivity extends AppCompatActivity implements AdapterVie
 
     }
 
-
-    public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-        String subject = subjectList.get(position).getName();
-        String tutor = subjectList.get(position).getTutor();
-        String ref = subjectList.get(position).getReferenceLink();
-
-        //implicit intent to open link in browser
-//        Uri uri = Uri.parse(link);
-//        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-//        startActivity(intent);
-
-        Intent myIntent = new Intent(this, SubjectDetailActivity.class);
-
-        Bundle myData = new Bundle();
-
-        myData.putString("tutorName", tutor);
-        myData.putString("subject", subject);
-        myData.putString("referenceLink", ref);
-
-        myIntent.putExtras(myData);
-        startActivity(myIntent, myData);
-
-
-
-    }
 
     //close database
     @Override

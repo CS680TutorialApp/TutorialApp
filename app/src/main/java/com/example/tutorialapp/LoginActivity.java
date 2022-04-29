@@ -24,6 +24,18 @@ public class LoginActivity extends AppCompatActivity {
 
         Button login = (Button) findViewById(R.id.login);
 
+        //TODO need to create db and table before you execute the query
+        /** such as below in the main activity, in the tutorHelper.dropTable() it drops the table and create table
+         * //create database
+         *         try {
+         *             db = tutorHelper.getWritableDatabase();
+         *         } catch (SQLException e) {
+         *             Log.d("SQLiteDemo", "Create database failed");
+         *         }
+         *         // Create tutor table
+         *         //drop existing table and recreate
+         *         tutorHelper.dropTable();
+         */
         Db = new LoginSQLHelper(this);
 
 
@@ -65,6 +77,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String inputPassword = password.getText().toString();
                 String inputUsername = user_name.getText().toString();
+                //TODO need to create db and table
                 Boolean checkUserPass = Db.checkUsernameAndPassword(inputUsername, inputPassword);
                 if(inputUsername.equals("") || inputPassword.equals("")){
                     Toast.makeText(LoginActivity.this, "Fields are empty. Please Enter again.", Toast.LENGTH_SHORT).show();

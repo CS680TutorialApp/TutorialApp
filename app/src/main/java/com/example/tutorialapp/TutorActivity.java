@@ -45,20 +45,20 @@ public class TutorActivity extends AppCompatActivity implements View.OnClickList
         //extract the individual data parts of the bundle
         tutorName = myBundle.getString("tutorName");
 
-        //create database
-        try {
-            db = tutorHelper.getWritableDatabase();
-        } catch (SQLException e) {
-            Log.d("SQLiteDemo", "Create database failed");
-        }
-
-        //drop existing table and recreate
-        tutorHelper.dropTable();
-
-        //insert records
-        tutorHelper.addTutor(new Tutor("Mike", "https://bentley.zoom.us/", "175 Forest St, Waltham, MA 02452", "(781) 891-2000", "mike@email.com"));
-        tutorHelper.addTutor(new Tutor("Jason", "https://bentley.zoom.us/", "175 Forest St, Waltham, MA 02452", "(781) 891-2000", "jason@email.com"));
-        tutorHelper.addTutor(new Tutor("Bob", "https://bentley.zoom.us/", "175 Forest St, Waltham, MA 02452", "(781) 891-2000", "bob@email.com"));
+//        //create database
+//        try {
+//            db = tutorHelper.getWritableDatabase();
+//        } catch (SQLException e) {
+//            Log.d("SQLiteDemo", "Create database failed");
+//        }
+//
+//        //drop existing table and recreate
+//        tutorHelper.dropTable();
+//
+//        //insert records
+//        tutorHelper.addTutor(new Tutor("Mike", "https://bentley.zoom.us/", "geo:0,0?q=175+forest+street+waltham+ma", "(781) 891-2000", "mike@email.com"));
+//        tutorHelper.addTutor(new Tutor("Jason", "https://bentley.zoom.us/", "geo:0,0?q=175+forest+street+waltham+ma", "(781) 891-2000", "jason@email.com"));
+//        tutorHelper.addTutor(new Tutor("Bob", "https://bentley.zoom.us/", "geo:0,0?q=175+forest+street+waltham+ma", "(781) 891-2000", "bob@email.com"));
 
         Tutor tutor = tutorHelper.getTutor(tutorName);
         zoom = tutor.getZoomLink();
@@ -86,29 +86,36 @@ public class TutorActivity extends AppCompatActivity implements View.OnClickList
 
     public void onClick(View v) {
         switch (v.getId()) {
+            //Open zoom link
             case R.id.button2:
-                //TODO CHECK ON THIS WEB SEARCH
                 Uri uri = Uri.parse(zoom);
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
                 break;
 
-            // start web search intent
+            // open map
             case R.id.button3:
-                //TODO CHECK ON MAP
-                Uri uri2 = Uri.parse("geo:0,0?q=175+forest+street+waltham+ma");
+                Uri uri2 = Uri.parse(address);
                 Intent intent3 = new Intent(Intent.ACTION_VIEW, uri2);
                 startActivity(intent3);
                 break;
-            // call number intent
+
+            // send email
             case R.id.button4:
-                //TODO SEND AN EMAIL
+                Intent intent2 = new Intent(Intent.ACTION_SENDTO);
+                intent2.setData(Uri.parse("mailto:")); // only email apps should handle this
+                intent2.putExtra(Intent.EXTRA_EMAIL, email);
+                intent2.putExtra(Intent.EXTRA_SUBJECT, "Schedule confirmation");
+                if (intent2.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent2);
+                }
                 break;
-            // google map intent =
+
+            // call phone
             case R.id.button5:
                 Uri uri3 = Uri.parse("tel:" + phone);
-                Intent intent2 = new Intent(Intent.ACTION_CALL, uri3);
-                startActivity(intent2);
+                Intent intent4 = new Intent(Intent.ACTION_CALL, uri3);
+                startActivity(intent4);
                 break;
 
         }
