@@ -2,6 +2,8 @@ package com.example.tutorialapp;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -13,8 +15,11 @@ public class Signup extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+
+        final Animation animation  = AnimationUtils.loadAnimation(this, R.anim.bounce);
         EditText user_name = (EditText) findViewById(R.id.new_user);
         EditText email = (EditText) findViewById(R.id.new_email);
         EditText password = (EditText) findViewById(R.id.new_password);
@@ -28,6 +33,7 @@ public class Signup extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
+                signUp.startAnimation(animation);
                 String usernameInput = user_name.getText().toString();
                 String emailInput = email.getText().toString();
                 String passwordInput = password.getText().toString();

@@ -13,6 +13,7 @@ public class Splash extends AppCompatActivity {
     Handler handler;
 
 
+
     @SuppressLint("Range")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +21,7 @@ public class Splash extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
+        getSupportActionBar().hide();
         handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override

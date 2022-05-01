@@ -13,8 +13,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -22,34 +20,44 @@
 
         </TextView>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="80dp"
+            >
+
+
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="-40dp"
+                android:layout_marginTop="-50dp"
+                android:src="@drawable/welcome">
+
+            </ImageView>
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="70dp"
-            android:src="@drawable/welcome">
-
-        </ImageView>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="170dp"
+            android:layout_marginLeft="-4dp"
+            android:layout_marginTop="80dp"
             android:src="@drawable/to">
 
         </ImageView>
 
-        <ImageView
-            android:id="@+id/splash_logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center"
-            android:src="@drawable/splash_logo_updated">
+            <ImageView
+                android:id="@+id/splash_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="220dp"
+                android:src="@drawable/splash_logo_updated">
 
-        </ImageView>
+            </ImageView>
+
+        </RelativeLayout>
 
     </RelativeLayout>
 
