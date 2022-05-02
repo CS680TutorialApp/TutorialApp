@@ -83,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(LoginActivity.this, "Signed is Successfully.", Toast.LENGTH_SHORT).show();
                         Toast.makeText(LoginActivity.this, " Username: "+ inputUsername + "; Password: "+ inputPassword, Toast.LENGTH_SHORT).show();
                         Toast.makeText(LoginActivity.this, checkUserPass.toString(), Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getApplicationContext(), AfterLogin.class);
+                        Intent intent = new Intent(getApplicationContext(), SubjectListActivity.class);
                         startActivity(intent);
 
                     }else{

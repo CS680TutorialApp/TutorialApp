@@ -1,5 +1,6 @@
 package com.example.tutorialapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -50,7 +51,9 @@ public class Signup extends AppCompatActivity {
                             Toast.makeText(Signup.this, "Registered Successfully:", Toast.LENGTH_SHORT).show();
                             Toast.makeText(Signup.this, "User already exist. Please sign in."+" Username: "+ usernameInput +"; Email: " +emailInput+ "; Password: "+ passwordInput, Toast.LENGTH_SHORT).show();
 //                            System.out.println("Username: "+ usernameInput +"Email: " +emailInput+ "Password: "+ passwordInput);
-
+                            //once register in, pop user for log in
+                            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                            startActivity(intent);
                         }
                         else {
                             Toast.makeText(Signup.this, "Registration field.", Toast.LENGTH_SHORT).show();

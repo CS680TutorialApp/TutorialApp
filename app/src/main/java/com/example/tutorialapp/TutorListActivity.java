@@ -5,6 +5,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -103,10 +105,20 @@ public class TutorListActivity extends AppCompatActivity {
                 return true;
 
             case R.id.close:
-                //TODO ADD SIGN OUT
-//                Intent intent3 = new Intent(this, TutorListActivity.class);
-//                startActivity(intent2);
-//                return true;
+                //String textToSpeak = "Good Bye! See You Later!";
+                //tTos.speak(textToSpeak, TextToSpeech.QUEUE_FLUSH, null);
+                Toast.makeText(this, "Sign Out has been clicked", Toast.LENGTH_SHORT).show();
+
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent pass_reset = new Intent(getApplicationContext(), LoginActivity.class);
+                        startActivity(pass_reset);
+                    }
+                }, 4000);
+
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
 
@@ -123,6 +135,8 @@ public class TutorListActivity extends AppCompatActivity {
         if(db != null)
             db.close();
     }
+
+
 
 
 

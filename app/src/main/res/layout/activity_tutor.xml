@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:backgroundTint="@color/blue">
 
     <TextView
         android:id="@+id/textView5"
@@ -16,6 +17,7 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:layout_marginLeft="90dp"
         android:layout_marginTop="20dp"
         android:text="Meeting Link(Zoom)" />
@@ -24,6 +26,7 @@
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:layout_marginLeft="90dp"
         android:layout_marginTop="20dp"
         android:text="Location" />
@@ -32,6 +35,7 @@
         android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:layout_marginLeft="90dp"
         android:layout_marginTop="20dp"
         android:text="Contact My Tutor(Email)" />
@@ -40,6 +44,7 @@
         android:id="@+id/button5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:layout_marginLeft="90dp"
         android:layout_marginTop="20dp"
         android:text="Contact My Tutor(Phone)" />

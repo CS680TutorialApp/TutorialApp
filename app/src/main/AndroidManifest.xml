@@ -2,6 +2,31 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.tutorialapp">
 
+    <!-- allow use of builtin applications: browser, GoogleMaps  -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="https" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="geo" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.DIAL" />
+            <data android:scheme="tel" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.CALL" />
+            <data android:scheme="tel" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.SENDTO" />
+            <data android:scheme="email" />
+        </intent>
+    </queries>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -25,8 +50,17 @@
         <activity android:name=".Signup"/>
         <activity android:name=".ResetPassword" />
 
+    <activity android:name=".SubjectListActivity" android:label="TutorialApp"/>
+    <activity android:name=".TutorActivity" android:label="TutorialApp"/>
+    <activity android:name=".SubjectDetailActivity" android:label="TutorialApp"/>
+    <activity android:name=".CalendarActivity" android:label="TutorialApp"/>
+    <activity android:name=".TutorListActivity" android:label="TutorialApp"/>
+
 
 
     </application>
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
 
 </manifest>

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:backgroundTint="@color/blue">
 
 
     <TextView
@@ -15,9 +16,9 @@
         android:id="@+id/list"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:divider="#ff0000ff"
-        android:dividerHeight="2dp"
-        />
+        android:backgroundTint="@color/blue"
+        android:divider="@color/blue"
+        android:dividerHeight="2dp" />
 
 
 </LinearLayout>

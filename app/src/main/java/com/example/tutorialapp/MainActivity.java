@@ -22,9 +22,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-        startActivity(intent);
-        Toast.makeText(this, getFilesDir().toString(), Toast.LENGTH_SHORT).show();
+
 
         // Initialize database of tutorial.db and login.db
         subjectHelper = new SubjectSQLHelper(this);
@@ -59,6 +57,10 @@ public class MainActivity extends AppCompatActivity {
         subjectHelper.addSubject(new Subject("Java", "Mike", "https://www.w3schools.com/java/"));
         subjectHelper.addSubject(new Subject("Python", "Jason", "https://www.w3schools.com/python/"));
         subjectHelper.addSubject(new Subject("SQL", "Bob", "https://www.w3schools.com/sql/"));
+
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        startActivity(intent);
+        Toast.makeText(this, getFilesDir().toString(), Toast.LENGTH_SHORT).show();
 
     }
 }
