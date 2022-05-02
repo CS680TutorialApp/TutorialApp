@@ -37,11 +37,11 @@ public class TutorListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_subject);
+        setContentView(R.layout.activity_tutor_list);
 
 //        //attach listener
 //        listView = (ListView) findViewById(R.id.list2);
- //       listView.setOnItemClickListener(this);
+        //       listView.setOnItemClickListener(this);
 
 
         //Show title on action bar
@@ -67,17 +67,17 @@ public class TutorListActivity extends AppCompatActivity {
 //        subjectHelper.addSubject(new Subject("Python", "Jason", "https://www.w3schools.com/python/"));
 //        subjectHelper.addSubject(new Subject("SQL", "Bob", "https://www.w3schools.com/sql/"));
 
-
+        tutorHelper = new TutorSQLHelper(this);
         tutorList = tutorHelper.getTutorList();
 
 //        CustomAdapter customAdapter = new CustomAdapter(this, tutorList);
 //        listView.setAdapter(customAdapter);
 
 
-        textView = (TextView) findViewById(R.id.textView);
-        textView.setText("Tutor List");
+        textView = (TextView) findViewById(R.id.tutors);
         for (Tutor tutor: tutorList) {
             textView.append(tutor.getName() + "\n");
+            Log.d("Tutor ", tutor.getName() + tutor.getPhone());
         }
     }
 
@@ -98,8 +98,8 @@ public class TutorListActivity extends AppCompatActivity {
 
             case R.id.tutor:
                 //TODO ADD TUTOR LIST
-                 Intent intent2 = new Intent(this, TutorListActivity.class);
-                 startActivity(intent2);
+                Intent intent2 = new Intent(this, TutorListActivity.class);
+                startActivity(intent2);
                 return true;
 
             case R.id.close:

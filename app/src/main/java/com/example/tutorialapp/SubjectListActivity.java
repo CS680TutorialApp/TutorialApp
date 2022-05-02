@@ -5,6 +5,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,6 +18,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class SubjectListActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
@@ -31,6 +33,9 @@ public class SubjectListActivity extends AppCompatActivity implements AdapterVie
 
 
     CustomAdapter customAdapter;
+
+    private TextToSpeech speaker;
+    private static final String tag = "Widgets";
 
 
 
@@ -50,8 +55,8 @@ public class SubjectListActivity extends AppCompatActivity implements AdapterVie
 //        actionBar.setDisplayUseLogoEnabled(false);
 //        actionBar.setDisplayShowHomeEnabled(false);
 
-//        subjectHelper = new SubjectSQLHelper(this);
-//
+        subjectHelper = new SubjectSQLHelper(this);
+
 //        //create database
 //        try {
 //            db = subjectHelper.getWritableDatabase();
@@ -67,12 +72,14 @@ public class SubjectListActivity extends AppCompatActivity implements AdapterVie
 //        subjectHelper.addSubject(new Subject("Python", "Jason", "https://www.w3schools.com/python/"));
 //        subjectHelper.addSubject(new Subject("SQL", "Bob", "https://www.w3schools.com/sql/"));
 
+        //Initialize Text to Speech engine (context, listener object)
+        speaker = new TextToSpeech(this, this::onInit);
+
 
         subjectList = subjectHelper.getSubjectList();
 
         CustomAdapter customAdapter = new CustomAdapter(this, subjectList);
         listView.setAdapter(customAdapter);
-
 
         textView = (TextView) findViewById(R.id.textView);
         textView.setText("Subject List");
@@ -123,6 +130,15 @@ public class SubjectListActivity extends AppCompatActivity implements AdapterVie
 //        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
 //        startActivity(intent);
 
+        if(speaker.isSpeaking()){
+            Log.i(tag, "Speaker Speaking");
+            speaker.stop();
+            // else start speech
+        } else {
+            Log.i(tag, "Speaker Not Already Speaking");
+            speak(subject + " selected");
+        }
+
         Intent myIntent = new Intent(this, SubjectDetailActivity.class);
 
         Bundle myData = new Bundle();
@@ -144,6 +160,33 @@ public class SubjectListActivity extends AppCompatActivity implements AdapterVie
         super.onPause();
         if(db != null)
             db.close();
+    }
+
+
+    //speak methods will send text to be spoken
+    public void speak(String output){
+        speaker.speak(output, TextToSpeech.QUEUE_FLUSH, null, "Id 0");
+    }
+
+    // Implements TextToSpeech.OnInitListener.
+    public void onInit(int status) {
+        if (status == TextToSpeech.SUCCESS) {
+            // Set preferred language to US english.
+            // If a language is not be available, the result will indicate it.
+            int result = speaker.setLanguage(Locale.US);
+
+            if (result == TextToSpeech.LANG_MISSING_DATA ||
+                    result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                // Language data is missing or the language is not supported.
+                Log.e(tag, "Language is not available.");
+            } else {
+                // The TTS engine has been successfully initialized
+                Log.i(tag, "TTS Initialization successful.");
+            }
+        } else {
+            // Initialization failed.
+            Log.e(tag, "Could not initialize TextToSpeech.");
+        }
     }
 
 

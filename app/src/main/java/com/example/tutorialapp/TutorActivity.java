@@ -1,6 +1,7 @@
 package com.example.tutorialapp;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
@@ -12,6 +13,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import static android.Manifest.permission.CALL_PHONE;
 
 public class TutorActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -30,6 +33,8 @@ public class TutorActivity extends AppCompatActivity implements View.OnClickList
     private Button button5;
 
     private TextView textView;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +64,7 @@ public class TutorActivity extends AppCompatActivity implements View.OnClickList
 //        tutorHelper.addTutor(new Tutor("Mike", "https://bentley.zoom.us/", "geo:0,0?q=175+forest+street+waltham+ma", "(781) 891-2000", "mike@email.com"));
 //        tutorHelper.addTutor(new Tutor("Jason", "https://bentley.zoom.us/", "geo:0,0?q=175+forest+street+waltham+ma", "(781) 891-2000", "jason@email.com"));
 //        tutorHelper.addTutor(new Tutor("Bob", "https://bentley.zoom.us/", "geo:0,0?q=175+forest+street+waltham+ma", "(781) 891-2000", "bob@email.com"));
-
+        tutorHelper = new TutorSQLHelper(this);
         Tutor tutor = tutorHelper.getTutor(tutorName);
         zoom = tutor.getZoomLink();
         phone = tutor.getPhone();
@@ -102,20 +107,37 @@ public class TutorActivity extends AppCompatActivity implements View.OnClickList
 
             // send email
             case R.id.button4:
-                Intent intent2 = new Intent(Intent.ACTION_SENDTO);
-                intent2.setData(Uri.parse("mailto:")); // only email apps should handle this
-                intent2.putExtra(Intent.EXTRA_EMAIL, email);
-                intent2.putExtra(Intent.EXTRA_SUBJECT, "Schedule confirmation");
-                if (intent2.resolveActivity(getPackageManager()) != null) {
-                    startActivity(intent2);
-                }
+//                Intent intent2 = new Intent(Intent.ACTION_SENDTO);
+//                intent2.setData(Uri.parse("mailto:")); // only email apps should handle this
+//                intent2.putExtra(Intent.EXTRA_EMAIL, email);
+//                intent2.putExtra(Intent.EXTRA_SUBJECT, "Schedule confirmation");
+//                if (intent2.resolveActivity(getPackageManager()) != null) {
+//                    startActivity(intent2);
+//                }
+                Intent selectorIntent = new Intent(Intent.ACTION_SENDTO);
+                selectorIntent.setData(Uri.parse("mailto:"));
+
+                final Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Schedule confirmation");
+                emailIntent.putExtra(Intent.EXTRA_TEXT, "Schedule confirmation");
+                emailIntent.setSelector( selectorIntent );
+
+                startActivity(Intent.createChooser(emailIntent, "Send email..."));
                 break;
 
             // call phone
             case R.id.button5:
                 Uri uri3 = Uri.parse("tel:" + phone);
-                Intent intent4 = new Intent(Intent.ACTION_CALL, uri3);
-                startActivity(intent4);
+
+                Intent i = new Intent(Intent.ACTION_CALL);
+                i.setData(uri3);
+
+                if (ContextCompat.checkSelfPermission(getApplicationContext(), CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+                    startActivity(i);
+                } else {
+                    requestPermissions(new String[]{CALL_PHONE}, 1);
+                }
                 break;
 
         }

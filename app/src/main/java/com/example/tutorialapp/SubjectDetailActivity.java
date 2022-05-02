@@ -1,6 +1,7 @@
 package com.example.tutorialapp;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -54,6 +55,15 @@ public class SubjectDetailActivity extends AppCompatActivity {
 
                 myIntent.putExtras(myData);
                 startActivity(myIntent, myData);
+            }
+        });
+
+        textView4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri uri = Uri.parse(ref);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
             }
         });
 
