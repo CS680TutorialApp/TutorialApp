@@ -14,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginActivity extends AppCompatActivity {
     LoginSQLHelper Db;
+    EditText user_name;
+    EditText password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,8 +24,8 @@ public class LoginActivity extends AppCompatActivity {
 
         final Animation animation  = AnimationUtils.loadAnimation(this, R.anim.bounce);
 
-        EditText user_name = (EditText) findViewById(R.id.user_name);
-        EditText password = (EditText) findViewById(R.id.pass);
+        user_name = (EditText) findViewById(R.id.user_name);
+        password = (EditText) findViewById(R.id.pass);
         TextView forgot_pass = (TextView) findViewById(R.id.forgot_pass);
         TextView signup = (TextView) findViewById(R.id.signup);
 

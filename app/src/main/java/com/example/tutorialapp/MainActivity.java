@@ -5,6 +5,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,8 +20,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intentSplash = new Intent(getApplicationContext(), Splash.class);
+        startActivity(intentSplash);
 
 
 
@@ -58,9 +63,20 @@ public class MainActivity extends AppCompatActivity {
         subjectHelper.addSubject(new Subject("Python", "Jason", "https://www.w3schools.com/python/"));
         subjectHelper.addSubject(new Subject("SQL", "Bob", "https://www.w3schools.com/sql/"));
 
-        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        Intent intent = new Intent(getApplicationContext(), Splash.class);
         startActivity(intent);
         Toast.makeText(this, getFilesDir().toString(), Toast.LENGTH_SHORT).show();
 
+    }
+    //setup the back button
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

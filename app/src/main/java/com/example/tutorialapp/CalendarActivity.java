@@ -7,6 +7,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -53,6 +54,15 @@ public class CalendarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
+        /*TODO
+        The next lines has been added
+         */
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //change actionBar color
+        androidx.appcompat.app.ActionBar actionBar = getSupportActionBar();
+        int myColor = Color.parseColor("#2CA7E0");
+        ColorDrawable cd = new ColorDrawable(myColor);
+        actionBar.setBackgroundDrawable(cd);
 
         //create a local Intent object; we have been called!
         Intent myLocalIntent = getIntent();
@@ -224,6 +234,10 @@ public class CalendarActivity extends AppCompatActivity {
                 }, 4000);
 
                 return true;
+            case android.R.id.home:
+                finish();
+                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
 

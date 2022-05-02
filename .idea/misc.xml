@@ -3,19 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1255" />
+        <entry key="..\:/Users/lelis/Desktop/Spring 2022/Mobile Application Development -CS 680/Project/Tutorial_App_Updated/app/src/main/res/layout/activity_main.xml" value="0.2046875" />
+        <entry key="..\:/Users/lelis/Desktop/Spring 2022/Mobile Application Development -CS 680/Project/Tutorial_App_Updated/app/src/main/res/layout/activity_splash_screen.xml" value="0.1" />
+        <entry key="..\:/Users/lelis/Desktop/Spring 2022/Mobile Application Development -CS 680/Project/Tutorial_App_Updated/app/src/main/res/menu/menu.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_calendar.xml" value="0.23641304347826086" />
-        <entry key="app/src/main/res/layout/activity_logout.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.23641304347826086" />
-        <entry key="app/src/main/res/layout/activity_signup.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.23641304347826086" />
         <entry key="app/src/main/res/layout/activity_subject.xml" value="0.16388044579533942" />
         <entry key="app/src/main/res/layout/activity_subject2.xml" value="0.5" />
-        <entry key="app/src/main/res/layout/activity_tutor.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_tutor_list.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_tutor.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_tutor_list.xml" value="0.10092592592592593" />
         <entry key="app/src/main/res/layout/list_row.xml" value="0.16388044579533942" />
         <entry key="app/src/main/res/menu/menu.xml" value="0.33697916666666666" />
-        <entry key="app/src/main/res/menu/menu2.xml" value="0.1" />
       </map>
     </option>
   </component>

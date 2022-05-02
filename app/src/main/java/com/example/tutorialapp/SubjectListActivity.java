@@ -3,6 +3,8 @@ package com.example.tutorialapp;
 import android.content.Intent;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -33,6 +35,10 @@ public class SubjectListActivity extends AppCompatActivity implements AdapterVie
     private ArrayList<Subject> subjectList;
     private final int IPC_ID = 1122;
 
+    /*TODO i added the next line
+     */
+    TextToSpeech tTos;
+
 
     CustomAdapter customAdapter;
 
@@ -44,7 +50,26 @@ public class SubjectListActivity extends AppCompatActivity implements AdapterVie
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    /*TODO i added the next line
+     */
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_subject);
+
+        /*TODO i added the next line
+         */
+        tTos = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int i) {
+                if(i != TextToSpeech.ERROR){
+                    tTos.setLanguage(Locale.ENGLISH);
+                }
+            }
+        });
+        //change actionBar color
+        androidx.appcompat.app.ActionBar actionBar = getSupportActionBar();
+        int myColor = Color.parseColor("#2CA7E0");
+        ColorDrawable cd = new ColorDrawable(myColor);
+        actionBar.setBackgroundDrawable(cd);
 
         //attach listener
         listView = (ListView) findViewById(R.id.list);
@@ -109,8 +134,10 @@ public class SubjectListActivity extends AppCompatActivity implements AdapterVie
                 return true;
 
             case R.id.close:
-                //String textToSpeak = "Good Bye! See You Later!";
-                //tTos.speak(textToSpeak, TextToSpeech.QUEUE_FLUSH, null);
+                /*TODO i added the next line
+                 */
+                String textToSpeak = "Good Bye! See You Later!";
+                tTos.speak(textToSpeak, TextToSpeech.QUEUE_FLUSH, null);
                 Toast.makeText(this, "Sign Out has been clicked", Toast.LENGTH_SHORT).show();
 
                 Handler handler = new Handler();
@@ -172,6 +199,14 @@ public class SubjectListActivity extends AppCompatActivity implements AdapterVie
         super.onPause();
         if(db != null)
             db.close();
+        /*TODO i added the next line
+         */
+        if (tTos != null){
+            tTos.stop();
+            tTos.shutdown();
+        }
+        super.onPause();
+
     }
 
 
@@ -200,6 +235,9 @@ public class SubjectListActivity extends AppCompatActivity implements AdapterVie
             Log.e(tag, "Could not initialize TextToSpeech.");
         }
     }
+    /*TODO i added the next line
+     */
+
 
 
 

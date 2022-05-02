@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -44,6 +46,16 @@ public class TutorActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutor);
+
+        /*TODO
+        the next lines has been added
+         */
+        //change actionBar color
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        androidx.appcompat.app.ActionBar actionBar = getSupportActionBar();
+        int myColor = Color.parseColor("#2CA7E0");
+        ColorDrawable cd = new ColorDrawable(myColor);
+        actionBar.setBackgroundDrawable(cd);
 
         //create a local Intent object; we have been called!
         Intent myLocalIntent = getIntent();
@@ -181,8 +193,12 @@ public class TutorActivity extends AppCompatActivity implements View.OnClickList
                         startActivity(pass_reset);
                     }
                 }, 4000);
-
                 return true;
+            case android.R.id.home:
+                finish();
+                return true;
+
+
             default:
                 return super.onOptionsItemSelected(item);
 

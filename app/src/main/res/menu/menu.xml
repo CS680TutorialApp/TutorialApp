@@ -3,14 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/subject"
-        android:title="Subjects"
+        android:id="@+id/dashboard"
+        android:title="Dashboard"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/subject"
+        android:title="Subject"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/schedule"
+        android:title="Schedule"
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/tutor"
-        android:title="Tutors"
-        app:showAsAction="always" />
+        android:title="Tutor"
+        app:showAsAction="ifRoom" />
 
 
     <item

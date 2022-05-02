@@ -1,7 +1,10 @@
 package com.example.tutorialapp;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -16,7 +19,7 @@ public class Signup extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        getSupportActionBar().hide();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
@@ -24,6 +27,12 @@ public class Signup extends AppCompatActivity {
         EditText user_name = (EditText) findViewById(R.id.new_user);
         EditText email = (EditText) findViewById(R.id.new_email);
         EditText password = (EditText) findViewById(R.id.new_password);
+
+        //change actionBar color
+        androidx.appcompat.app.ActionBar actionBar = getSupportActionBar();
+        int myColor = Color.parseColor("#2CA7E0");
+        ColorDrawable cd = new ColorDrawable(myColor);
+        actionBar.setBackgroundDrawable(cd);
 
 
 
@@ -72,5 +81,16 @@ public class Signup extends AppCompatActivity {
         });
 
 
+    }
+    //setup the back button
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -3,6 +3,8 @@ package com.example.tutorialapp;
 import android.content.Intent;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -40,6 +42,16 @@ public class TutorListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutor_list);
+
+        /*TODO
+        the next lines has benn added
+         */
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //change actionBar color
+        androidx.appcompat.app.ActionBar actionBar = getSupportActionBar();
+        int myColor = Color.parseColor("#2CA7E0");
+        ColorDrawable cd = new ColorDrawable(myColor);
+        actionBar.setBackgroundDrawable(cd);
 
 //        //attach listener
 //        listView = (ListView) findViewById(R.id.list2);
@@ -118,6 +130,9 @@ public class TutorListActivity extends AppCompatActivity {
                     }
                 }, 4000);
 
+                return true;
+            case android.R.id.home:
+                finish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

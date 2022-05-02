@@ -5,6 +5,9 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,12 +24,28 @@ public class Splash extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
+        ImageView bent_logo = findViewById(R.id.splash_logo);
+        ImageView welcome = findViewById(R.id.welcome);
+        ImageView to = findViewById(R.id.to);
+
+        //Load animation
+        Animation slide_down = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.slide_up);
+
+        Animation slide_up = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.slide_up);
+
+// Start animation
+        welcome.startAnimation(slide_down);
+        to.startAnimation(slide_down);
+        bent_logo.startAnimation(slide_up);
+
         getSupportActionBar().hide();
         handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent homeScreen = new Intent(Splash.this,MainActivity.class);
+                Intent homeScreen = new Intent(Splash.this,LoginActivity.class);
                 startActivity(homeScreen);
                 finish();
             }
