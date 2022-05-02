@@ -9,6 +9,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,6 +22,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import static android.Manifest.permission.CALL_PHONE;
+
+import java.util.Locale;
 
 public class TutorActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -39,6 +42,7 @@ public class TutorActivity extends AppCompatActivity implements View.OnClickList
     private Button button5;
 
     private TextView textView;
+    private TextToSpeech tTos;
 
 
 
@@ -100,7 +104,16 @@ public class TutorActivity extends AppCompatActivity implements View.OnClickList
         button5.setOnClickListener(this);
 
         textView = (TextView) findViewById(R.id.textView5);
-        textView.setText("Confirmation of Appointment with " + tutor.getName());
+        textView.setText(tutor.getName() + "'s Appointment Confirmation");
+
+        tTos = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int i) {
+                if(i != TextToSpeech.ERROR){
+                    tTos.setLanguage(Locale.ENGLISH);
+                }
+            }
+        });
 
 
     }
@@ -181,8 +194,8 @@ public class TutorActivity extends AppCompatActivity implements View.OnClickList
                 return true;
 
             case R.id.close:
-                //String textToSpeak = "Good Bye! See You Later!";
-                //tTos.speak(textToSpeak, TextToSpeech.QUEUE_FLUSH, null);
+                String textToSpeak = "Good Bye! See You Later!";
+                tTos.speak(textToSpeak, TextToSpeech.QUEUE_FLUSH, null);
                 Toast.makeText(this, "Sign Out has been clicked", Toast.LENGTH_SHORT).show();
 
                 Handler handler = new Handler();

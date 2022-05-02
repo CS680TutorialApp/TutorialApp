@@ -6,6 +6,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.speech.tts.TextToSpeech;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,6 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.Locale;
 
 public class SubjectDetailActivity extends AppCompatActivity {
     private TextView textView2;
@@ -25,12 +28,14 @@ public class SubjectDetailActivity extends AppCompatActivity {
     String subject;
     String ref;
 
+    private TextToSpeech tTos;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subject2);
 
-        /*TODO
+        /*
         the next lines has been added
          */
         //change actionBar color
@@ -83,6 +88,15 @@ public class SubjectDetailActivity extends AppCompatActivity {
             }
         });
 
+        tTos = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int i) {
+                if(i != TextToSpeech.ERROR){
+                    tTos.setLanguage(Locale.ENGLISH);
+                }
+            }
+        });
+
 
 
 
@@ -110,8 +124,8 @@ public class SubjectDetailActivity extends AppCompatActivity {
                 return true;
 
             case R.id.close:
-                //                String textToSpeak = "Good Bye! See You Later!";
-//                tTos.speak(textToSpeak, TextToSpeech.QUEUE_FLUSH, null);
+                String textToSpeak = "Good Bye! See You Later!";
+                tTos.speak(textToSpeak, TextToSpeech.QUEUE_FLUSH, null);
                 Toast.makeText(this, "Sign Out has been clicked", Toast.LENGTH_SHORT).show();
 
                 Handler handler = new Handler();

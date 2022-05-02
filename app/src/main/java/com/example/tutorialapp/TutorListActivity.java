@@ -8,6 +8,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,6 +22,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class TutorListActivity extends AppCompatActivity {
 
@@ -35,6 +37,7 @@ public class TutorListActivity extends AppCompatActivity {
 
 
     CustomAdapter customAdapter;
+    private TextToSpeech tTos;
 
 
 
@@ -90,9 +93,18 @@ public class TutorListActivity extends AppCompatActivity {
 
         textView = (TextView) findViewById(R.id.tutors);
         for (Tutor tutor: tutorList) {
-            textView.append(tutor.getName() + "\n");
+            textView.append(tutor.getName() + ": " + tutor.getEmail() + "\n");
             Log.d("Tutor ", tutor.getName() + tutor.getPhone());
         }
+
+        tTos = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int i) {
+                if(i != TextToSpeech.ERROR){
+                    tTos.setLanguage(Locale.ENGLISH);
+                }
+            }
+        });
     }
 
     @Override
@@ -117,8 +129,8 @@ public class TutorListActivity extends AppCompatActivity {
                 return true;
 
             case R.id.close:
-                //String textToSpeak = "Good Bye! See You Later!";
-                //tTos.speak(textToSpeak, TextToSpeech.QUEUE_FLUSH, null);
+                String textToSpeak = "Good Bye! See You Later!";
+                tTos.speak(textToSpeak, TextToSpeech.QUEUE_FLUSH, null);
                 Toast.makeText(this, "Sign Out has been clicked", Toast.LENGTH_SHORT).show();
 
                 Handler handler = new Handler();

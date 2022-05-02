@@ -23,6 +23,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 
+import java.util.Locale;
+
 
 public class CalendarActivity extends AppCompatActivity {
 
@@ -49,12 +51,14 @@ public class CalendarActivity extends AppCompatActivity {
 
     private Intent myIntent;
 
+    private TextToSpeech tTos;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
-        /*TODO
+        /*
         The next lines has been added
          */
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -196,6 +200,15 @@ public class CalendarActivity extends AppCompatActivity {
                 mNotificationManager.cancel(SIMPLE_NOTFICATION_ID);
             }
         });
+
+        tTos = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int i) {
+                if(i != TextToSpeech.ERROR){
+                    tTos.setLanguage(Locale.ENGLISH);
+                }
+            }
+        });
     }
 
     @Override
@@ -220,8 +233,8 @@ public class CalendarActivity extends AppCompatActivity {
                 return true;
 
             case R.id.close:
-//                String textToSpeak = "Good Bye! See You Later!";
-//                tTos.speak(textToSpeak, TextToSpeech.QUEUE_FLUSH, null);
+                String textToSpeak = "Good Bye! See You Later!";
+                tTos.speak(textToSpeak, TextToSpeech.QUEUE_FLUSH, null);
                 Toast.makeText(this, "Sign Out has been clicked", Toast.LENGTH_SHORT).show();
 
                 Handler handler = new Handler();

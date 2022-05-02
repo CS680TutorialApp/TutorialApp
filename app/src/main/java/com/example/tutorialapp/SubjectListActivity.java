@@ -35,7 +35,7 @@ public class SubjectListActivity extends AppCompatActivity implements AdapterVie
     private ArrayList<Subject> subjectList;
     private final int IPC_ID = 1122;
 
-    /*TODO i added the next line
+    /*added the next line
      */
     TextToSpeech tTos;
 
