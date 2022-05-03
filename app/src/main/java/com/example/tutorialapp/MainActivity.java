@@ -42,9 +42,9 @@ public class MainActivity extends AppCompatActivity {
         tutorHelper.dropTable();
 
         //insert records
-        tutorHelper.addTutor(new Tutor("Mike", "https://bentley.zoom.us/", "geo:0,0?q=175+forest+street+waltham+ma", "7818912000", "mike@email.com"));
-        tutorHelper.addTutor(new Tutor("Jason", "https://bentley.zoom.us/", "geo:0,0?q=175+forest+street+waltham+ma", "7818912000", "jason@email.com"));
-        tutorHelper.addTutor(new Tutor("Bob", "https://bentley.zoom.us/", "geo:0,0?q=175+forest+street+waltham+ma", "7818912000", "bob@email.com"));
+        tutorHelper.addTutor(new Tutor("Mike", "https://bentley.zoom.us/j/6867197321?_x_zm_rtaid=yMTqIKDaSlia3Kxa35UqDg.1651608291249.f8338e8fdb2ee5b47a163ed8a35db4ce&_x_zm_rhtaid=139#success", "geo:0,0?q=175+forest+street+waltham+ma", "7818912000", "mike@email.com"));
+        tutorHelper.addTutor(new Tutor("Jason", "https://bentley.zoom.us/j/6867197321?_x_zm_rtaid=yMTqIKDaSlia3Kxa35UqDg.1651608291249.f8338e8fdb2ee5b47a163ed8a35db4ce&_x_zm_rhtaid=139#success", "geo:0,0?q=175+forest+street+waltham+ma", "7818912000", "jason@email.com"));
+        tutorHelper.addTutor(new Tutor("Bob", "https://bentley.zoom.us/j/6867197321?_x_zm_rtaid=yMTqIKDaSlia3Kxa35UqDg.1651608291249.f8338e8fdb2ee5b47a163ed8a35db4ce&_x_zm_rhtaid=139#success", "geo:0,0?q=175+forest+street+waltham+ma", "7818912000", "bob@email.com"));
 
         //create database
         try {
