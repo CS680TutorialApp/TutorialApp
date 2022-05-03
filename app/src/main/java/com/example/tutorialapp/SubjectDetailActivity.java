@@ -45,7 +45,7 @@ public class SubjectDetailActivity extends AppCompatActivity {
         ColorDrawable cd = new ColorDrawable(myColor);
         actionBar.setBackgroundDrawable(cd);
 
-        //create a local Intent object; we have been called!
+        //create a local Intent object to extract data
         Intent myLocalIntent = getIntent();
 
         //grab the values in intent container
@@ -78,7 +78,7 @@ public class SubjectDetailActivity extends AppCompatActivity {
                 startActivity(myIntent, myData);
             }
         });
-
+        // send implicit intent to reference website
         textView4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

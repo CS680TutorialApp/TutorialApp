@@ -27,9 +27,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intentSplash = new Intent(getApplicationContext(), Splash.class);
         startActivity(intentSplash);
 
-
-
-        // Initialize database of tutorial.db and login.db
+        // Initialize database of tutorial.db
         subjectHelper = new SubjectSQLHelper(this);
         tutorHelper = new TutorSQLHelper(this);
 

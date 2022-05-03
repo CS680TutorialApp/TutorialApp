@@ -35,8 +35,6 @@ public class SubjectListActivity extends AppCompatActivity implements AdapterVie
     private ArrayList<Subject> subjectList;
     private final int IPC_ID = 1122;
 
-    /*added the next line
-     */
     TextToSpeech tTos;
 
 
@@ -50,13 +48,10 @@ public class SubjectListActivity extends AppCompatActivity implements AdapterVie
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    /*TODO i added the next line
-     */
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_subject);
 
-        /*TODO i added the next line
-         */
         tTos = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int i) {
@@ -76,33 +71,12 @@ public class SubjectListActivity extends AppCompatActivity implements AdapterVie
         listView.setOnItemClickListener(this);
 
 
-        //Show title on action bar
-//        ActionBar actionBar = getSupportActionBar();
-//        actionBar.setDisplayShowTitleEnabled(true); // app title shown
-//        actionBar.setDisplayUseLogoEnabled(false);
-//        actionBar.setDisplayShowHomeEnabled(false);
-
         subjectHelper = new SubjectSQLHelper(this);
-
-//        //create database
-//        try {
-//            db = subjectHelper.getWritableDatabase();
-//        } catch (SQLException e) {
-//            Log.d("SQLiteDemo", "Create database failed");
-//        }
-//
-//        //drop existing table and recreate
-//        subjectHelper.dropTable();
-//
-//        //insert records
-//        subjectHelper.addSubject(new Subject("Java", "Mike", "https://www.w3schools.com/java/"));
-//        subjectHelper.addSubject(new Subject("Python", "Jason", "https://www.w3schools.com/python/"));
-//        subjectHelper.addSubject(new Subject("SQL", "Bob", "https://www.w3schools.com/sql/"));
 
         //Initialize Text to Speech engine (context, listener object)
         speaker = new TextToSpeech(this, this::onInit);
 
-
+        // retrieve subject list
         subjectList = subjectHelper.getSubjectList();
 
         CustomAdapter customAdapter = new CustomAdapter(this, subjectList);
@@ -126,16 +100,13 @@ public class SubjectListActivity extends AppCompatActivity implements AdapterVie
                 Intent intent = new Intent(this, SubjectListActivity.class);
                 startActivity(intent);
                 return true;
-
+            // if tutor is selected, then display list of tutors
             case R.id.tutor:
-                //TODO ADD TUTOR LIST
                 Intent intent2 = new Intent(this, TutorListActivity.class);
                 startActivity(intent2);
                 return true;
 
             case R.id.close:
-                /*TODO i added the next line
-                 */
                 String textToSpeak = "Good Bye! See You Later!";
                 tTos.speak(textToSpeak, TextToSpeech.QUEUE_FLUSH, null);
                 Toast.makeText(this, "Sign Out has been clicked", Toast.LENGTH_SHORT).show();
@@ -164,11 +135,7 @@ public class SubjectListActivity extends AppCompatActivity implements AdapterVie
         String tutor = subjectList.get(position).getTutor();
         String ref = subjectList.get(position).getReferenceLink();
 
-        //implicit intent to open link in browser
-//        Uri uri = Uri.parse(link);
-//        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-//        startActivity(intent);
-
+        // set up text to speech
         if(speaker.isSpeaking()){
             Log.i(tag, "Speaker Speaking");
             speaker.stop();
@@ -177,7 +144,7 @@ public class SubjectListActivity extends AppCompatActivity implements AdapterVie
             Log.i(tag, "Speaker Not Already Speaking");
             speak(subject + " selected");
         }
-
+        // send intent with data
         Intent myIntent = new Intent(this, SubjectDetailActivity.class);
 
         Bundle myData = new Bundle();
@@ -188,8 +155,6 @@ public class SubjectListActivity extends AppCompatActivity implements AdapterVie
 
         myIntent.putExtras(myData);
         startActivity(myIntent, myData);
-
-
 
     }
 
@@ -235,12 +200,5 @@ public class SubjectListActivity extends AppCompatActivity implements AdapterVie
             Log.e(tag, "Could not initialize TextToSpeech.");
         }
     }
-    /*TODO i added the next line
-     */
-
-
-
-
-
 
 }

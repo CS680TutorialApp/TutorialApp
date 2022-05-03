@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
                 password.setHint("Password");
             }
         });
-
+        // if forget password, send intent to resetPassword.class
         forgot_pass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,6 +58,8 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(LoginActivity.this, "Forgot password Clicked", Toast.LENGTH_SHORT).show();
             }
         });
+
+        // if sign up, send intent to signup.class
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,13 +76,14 @@ public class LoginActivity extends AppCompatActivity {
                 String inputPassword = password.getText().toString();
                 String inputUsername = user_name.getText().toString();
                 Boolean checkUserPass = Db.checkUsernameAndPassword(inputUsername, inputPassword);
+                // check if fields are empty
                 if(inputUsername.equals("") || inputPassword.equals("")){
                     Toast.makeText(LoginActivity.this, "Fields are empty. Please Enter again.", Toast.LENGTH_SHORT).show();
 
 
                 }
                 else{
-
+                    // if username and password are correct, send to subjectListActivity.class
                     if(checkUserPass == true){
                         Toast.makeText(LoginActivity.this, "Signed is Successfully.", Toast.LENGTH_SHORT).show();
                         Toast.makeText(LoginActivity.this, " Username: "+ inputUsername + "; Password: "+ inputPassword, Toast.LENGTH_SHORT).show();

@@ -43,7 +43,7 @@
         android:gravity="center"
         android:layout_marginLeft="90dp"
         android:layout_marginTop="20dp"
-        android:text="Contact My Tutor(Email)" />
+        android:text="Email: " />
 
     <Button
         android:id="@+id/button5"

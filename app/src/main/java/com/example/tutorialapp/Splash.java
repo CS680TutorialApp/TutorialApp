@@ -35,7 +35,7 @@ public class Splash extends AppCompatActivity {
         Animation slide_up = AnimationUtils.loadAnimation(getApplicationContext(),
                 R.anim.slide_up);
 
-// Start animation
+        // Start animation
         welcome.startAnimation(slide_down);
         to.startAnimation(slide_down);
         bent_logo.startAnimation(slide_up);

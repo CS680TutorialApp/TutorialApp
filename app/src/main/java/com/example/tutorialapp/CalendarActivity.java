@@ -48,9 +48,6 @@ public class CalendarActivity extends AppCompatActivity {
     private String contentText = "Get to Email by clicking me";
     private String tickerText = "New Alert - Pull Down Status Bar";
 
-
-    private Intent myIntent;
-
     private TextToSpeech tTos;
 
 
@@ -68,7 +65,7 @@ public class CalendarActivity extends AppCompatActivity {
         ColorDrawable cd = new ColorDrawable(myColor);
         actionBar.setBackgroundDrawable(cd);
 
-        //create a local Intent object; we have been called!
+        //create a local Intent object to extract data
         Intent myLocalIntent = getIntent();
 
         //grab the values in intent container
@@ -78,17 +75,15 @@ public class CalendarActivity extends AppCompatActivity {
         tutorSQLHelper = new TutorSQLHelper(this);
         tutorObject = tutorSQLHelper.getTutor(tutor);
         String tutorEmail = tutorObject.getEmail();
-        // By ID we can use each component
-        // which id is assign in xml file
-        // use findViewById() to get the
-        // CalendarView and TextView
+
+        // Set up calendar
         calendar = (CalendarView) findViewById(R.id.calendar);
         date_view = (TextView) findViewById(R.id.date_view);
         button = (Button) findViewById(R.id.button6);
         notifyButton = (Button) findViewById(R.id.notify);
         clearButton = (Button) findViewById(R.id.clear);
 
-        // notification set up
+        // set up notification
         mNotificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
 
         //Notifications must be assigned to a channel
@@ -106,35 +101,17 @@ public class CalendarActivity extends AppCompatActivity {
 
 
         //create implicit intent for action when notification selected
-        //from expanded notification screen
-        //open email when notification clicked
+        //send email to tutor when notification clicked
         Intent notifyIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:"));
 
         notifyIntent.putExtra(Intent.EXTRA_EMAIL, new String[] {tutorEmail, tutorEmail});
         notifyIntent.putExtra(Intent.EXTRA_TEXT, "Schedule Confirmation");
         notifyIntent.putExtra(Intent.EXTRA_SUBJECT, "Schedule Confirmation");
 
-        Intent selectorIntent = new Intent(Intent.ACTION_SENDTO);
-        selectorIntent.setData(Uri.parse("mailto:"));
-
-        final Intent emailIntent = new Intent(Intent.ACTION_SEND);
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{tutorEmail});
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Schedule confirmation");
-        emailIntent.putExtra(Intent.EXTRA_TEXT, "Schedule confirmation");
-        emailIntent.setSelector( selectorIntent );
 
         //create pending intent to wrap intent so that it will fire when notification selected.
-        //The PendingIntent can only be used once.
         PendingIntent pendingIntent = PendingIntent.getActivity(
-                this, 0, emailIntent,PendingIntent.FLAG_MUTABLE);
-        //    PendingIntent.FLAG_ONE_SHOT);
-
-//        PendingIntent updatedPendingIntent = PendingIntent.getActivity(
-//                this,
-//                NOTIFICATION_REQUEST_CODE,
-//                updatedIntent,
-//                PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT // setting the mutability flag
-//        )
+                this, 0, notifyIntent,PendingIntent.FLAG_MUTABLE);
 
         final Notification.Builder nb = new Notification.Builder(getApplicationContext(), ANDROID_CHANNEL_ID)
                 .setContentTitle(contentTitle)
@@ -147,8 +124,6 @@ public class CalendarActivity extends AppCompatActivity {
         // Add Listener in calendar
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
-            // In this Listener have one method
-            // and in this method we will
             // get the value of DAYS, MONTH, YEARS
             public void onSelectedDayChange(
                     CalendarView view,
@@ -156,21 +131,20 @@ public class CalendarActivity extends AppCompatActivity {
                     int month,
                     int dayOfMonth)
             {
-
                 // Store the value of date with
                 // format in String type Variable
                 // Add 1 in month because month
                 // index is start with 0
                 String Date
-                        = dayOfMonth + "-"
-                        + (month + 1) + "-" + year;
+                        = (month + 1)  + "-"
+                        +  dayOfMonth + "-" + year;
 
                 // set this date in TextView for Display
                 date_view.setText(Date);
             }
         });
 
-        //TODO Add notification here to BUTTON
+        //Send explicit intent to tutorActivity class with data
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -226,8 +200,9 @@ public class CalendarActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
 
+            // display tutor list
             case R.id.tutor:
-                //TODO ADD TUTOR LIST
+
                 Intent intent2 = new Intent(this, TutorListActivity.class);
                 startActivity(intent2);
                 return true;

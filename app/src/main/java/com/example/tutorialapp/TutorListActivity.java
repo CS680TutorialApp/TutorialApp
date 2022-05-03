@@ -46,7 +46,7 @@ public class TutorListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutor_list);
 
-        /*TODO
+        /*
         the next lines has benn added
          */
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -56,40 +56,9 @@ public class TutorListActivity extends AppCompatActivity {
         ColorDrawable cd = new ColorDrawable(myColor);
         actionBar.setBackgroundDrawable(cd);
 
-//        //attach listener
-//        listView = (ListView) findViewById(R.id.list2);
-        //       listView.setOnItemClickListener(this);
-
-
-        //Show title on action bar
-//        ActionBar actionBar = getSupportActionBar();
-//        actionBar.setDisplayShowTitleEnabled(true); // app title shown
-//        actionBar.setDisplayUseLogoEnabled(false);
-//        actionBar.setDisplayShowHomeEnabled(false);
-
-//        subjectHelper = new SubjectSQLHelper(this);
-//
-//        //create database
-//        try {
-//            db = subjectHelper.getWritableDatabase();
-//        } catch (SQLException e) {
-//            Log.d("SQLiteDemo", "Create database failed");
-//        }
-//
-//        //drop existing table and recreate
-//        subjectHelper.dropTable();
-//
-//        //insert records
-//        subjectHelper.addSubject(new Subject("Java", "Mike", "https://www.w3schools.com/java/"));
-//        subjectHelper.addSubject(new Subject("Python", "Jason", "https://www.w3schools.com/python/"));
-//        subjectHelper.addSubject(new Subject("SQL", "Bob", "https://www.w3schools.com/sql/"));
-
+        // get tutor list from database
         tutorHelper = new TutorSQLHelper(this);
         tutorList = tutorHelper.getTutorList();
-
-//        CustomAdapter customAdapter = new CustomAdapter(this, tutorList);
-//        listView.setAdapter(customAdapter);
-
 
         textView = (TextView) findViewById(R.id.tutors);
         for (Tutor tutor: tutorList) {
@@ -123,7 +92,7 @@ public class TutorListActivity extends AppCompatActivity {
                 return true;
 
             case R.id.tutor:
-                //TODO ADD TUTOR LIST
+                //show TUTOR LIST
                 Intent intent2 = new Intent(this, TutorListActivity.class);
                 startActivity(intent2);
                 return true;
@@ -153,7 +122,6 @@ public class TutorListActivity extends AppCompatActivity {
         }
 
     }
-
 
     //close database
     @Override

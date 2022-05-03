@@ -51,7 +51,7 @@ public class TutorActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutor);
 
-        /*TODO
+        /*
         the next lines has been added
          */
         //change actionBar color
@@ -61,7 +61,7 @@ public class TutorActivity extends AppCompatActivity implements View.OnClickList
         ColorDrawable cd = new ColorDrawable(myColor);
         actionBar.setBackgroundDrawable(cd);
 
-        //create a local Intent object; we have been called!
+        //create a local Intent object to extract data
         Intent myLocalIntent = getIntent();
 
         //grab the values in intent container
@@ -69,21 +69,7 @@ public class TutorActivity extends AppCompatActivity implements View.OnClickList
 
         //extract the individual data parts of the bundle
         tutorName = myBundle.getString("tutorName");
-
-//        //create database
-//        try {
-//            db = tutorHelper.getWritableDatabase();
-//        } catch (SQLException e) {
-//            Log.d("SQLiteDemo", "Create database failed");
-//        }
-//
-//        //drop existing table and recreate
-//        tutorHelper.dropTable();
-//
-//        //insert records
-//        tutorHelper.addTutor(new Tutor("Mike", "https://bentley.zoom.us/", "geo:0,0?q=175+forest+street+waltham+ma", "(781) 891-2000", "mike@email.com"));
-//        tutorHelper.addTutor(new Tutor("Jason", "https://bentley.zoom.us/", "geo:0,0?q=175+forest+street+waltham+ma", "(781) 891-2000", "jason@email.com"));
-//        tutorHelper.addTutor(new Tutor("Bob", "https://bentley.zoom.us/", "geo:0,0?q=175+forest+street+waltham+ma", "(781) 891-2000", "bob@email.com"));
+        // get tutor from database
         tutorHelper = new TutorSQLHelper(this);
         Tutor tutor = tutorHelper.getTutor(tutorName);
         zoom = tutor.getZoomLink();
@@ -98,9 +84,11 @@ public class TutorActivity extends AppCompatActivity implements View.OnClickList
         button3.setOnClickListener(this);
 
         button4 = (Button) findViewById(R.id.button4);
+        button4.setText("Email: " + email);
         button4.setOnClickListener(this);
 
         button5 = (Button) findViewById(R.id.button5);
+        button5.setText("Phone: " + phone);
         button5.setOnClickListener(this);
 
         textView = (TextView) findViewById(R.id.textView5);
@@ -134,15 +122,8 @@ public class TutorActivity extends AppCompatActivity implements View.OnClickList
                 startActivity(intent3);
                 break;
 
-            // send email
+            // send email to tutor
             case R.id.button4:
-//                Intent intent2 = new Intent(Intent.ACTION_SENDTO);
-//                intent2.setData(Uri.parse("mailto:")); // only email apps should handle this
-//                intent2.putExtra(Intent.EXTRA_EMAIL, email);
-//                intent2.putExtra(Intent.EXTRA_SUBJECT, "Schedule confirmation");
-//                if (intent2.resolveActivity(getPackageManager()) != null) {
-//                    startActivity(intent2);
-//                }
                 Intent selectorIntent = new Intent(Intent.ACTION_SENDTO);
                 selectorIntent.setData(Uri.parse("mailto:"));
 
@@ -186,9 +167,9 @@ public class TutorActivity extends AppCompatActivity implements View.OnClickList
                 Intent intent = new Intent(this, SubjectListActivity.class);
                 startActivity(intent);
                 return true;
-
+            // show tutor list
             case R.id.tutor:
-                //TODO ADD TUTOR LIST
+
                 Intent intent2 = new Intent(this, TutorListActivity.class);
                 startActivity(intent2);
                 return true;

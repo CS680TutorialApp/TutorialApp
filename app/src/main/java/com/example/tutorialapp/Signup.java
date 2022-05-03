@@ -47,7 +47,7 @@ public class Signup extends AppCompatActivity {
                 String usernameInput = user_name.getText().toString();
                 String emailInput = email.getText().toString();
                 String passwordInput = password.getText().toString();
-
+                // check if fields are empty
                 if(usernameInput.equals("") || emailInput.equals("") || passwordInput.equals("")){
                     Toast.makeText(Signup.this, "Fields are empty.", Toast.LENGTH_SHORT).show();
 
@@ -59,7 +59,6 @@ public class Signup extends AppCompatActivity {
                         if (insert==true){
                             Toast.makeText(Signup.this, "Registered Successfully:", Toast.LENGTH_SHORT).show();
                             Toast.makeText(Signup.this, "User already exist. Please sign in."+" Username: "+ usernameInput +"; Email: " +emailInput+ "; Password: "+ passwordInput, Toast.LENGTH_SHORT).show();
-//                            System.out.println("Username: "+ usernameInput +"Email: " +emailInput+ "Password: "+ passwordInput);
                             //once register in, pop user for log in
                             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                             startActivity(intent);

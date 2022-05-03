@@ -13,7 +13,7 @@ public class Subject {
         this.referenceLink = referenceLink;
     }
 
-    public int getIdChangedd() {
+    public int getId() {
         return this.id;
     }
 
