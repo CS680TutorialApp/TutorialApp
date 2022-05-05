@@ -76,10 +76,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="470dp"
+                android:linksClickable="true"
                 android:padding="2dp"
                 android:text="Signup"
-                android:textColor="#2CA7E0"
-                android:linksClickable="true">
+                android:textColor="#2CA7E0">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/error"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="600dp"
+                android:textAlignment="center"
+                android:textColor="@color/red">
 
             </TextView>
 

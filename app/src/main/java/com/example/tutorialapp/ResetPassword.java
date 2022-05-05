@@ -9,10 +9,12 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ResetPassword extends AppCompatActivity {
+    TextView reset_error;
 
 
     @Override
@@ -31,6 +33,7 @@ public class ResetPassword extends AppCompatActivity {
 
         EditText email = (EditText) findViewById(R.id.email_to_reset);
         Button reset = (Button) findViewById(R.id.reset_pass);
+        reset_error  = findViewById(R.id.resetError);
 
         email.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,6 +48,10 @@ public class ResetPassword extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 reset.startAnimation(animation);
+                if(email.getText().equals("")){
+                    reset_error.setText("Field is Empty");
+                }
+
 
             }
         });

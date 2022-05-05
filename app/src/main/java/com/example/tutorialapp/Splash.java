@@ -39,12 +39,15 @@ public class Splash extends AppCompatActivity {
         welcome.startAnimation(slide_down);
         to.startAnimation(slide_down);
         bent_logo.startAnimation(slide_up);
-
+        //hide taskbar on splash activity
         getSupportActionBar().hide();
+
+        //implement handler to set the splash view for a while
         handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                //intent to the login activity after splash done
                 Intent homeScreen = new Intent(Splash.this,LoginActivity.class);
                 startActivity(homeScreen);
                 finish();

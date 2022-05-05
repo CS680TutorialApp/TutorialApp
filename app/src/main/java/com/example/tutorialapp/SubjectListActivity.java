@@ -109,7 +109,7 @@ public class SubjectListActivity extends AppCompatActivity implements AdapterVie
             case R.id.close:
                 String textToSpeak = "Good Bye! See You Later!";
                 tTos.speak(textToSpeak, TextToSpeech.QUEUE_FLUSH, null);
-                Toast.makeText(this, "Sign Out has been clicked", Toast.LENGTH_SHORT).show();
+
 
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {

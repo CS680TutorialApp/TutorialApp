@@ -63,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(getApplicationContext(), Splash.class);
         startActivity(intent);
-        Toast.makeText(this, getFilesDir().toString(), Toast.LENGTH_SHORT).show();
 
     }
     //setup the back button
